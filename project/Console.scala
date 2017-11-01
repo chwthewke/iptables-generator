@@ -11,7 +11,7 @@ object Console {
       )
 
     def compileS = compileList.map( "import " + _ ).mkString( "\n" )
-    def testS    = ( compileList ++ testList ).map( "import " + _ ).mkString( "\n" )
+    def testS    = (compileList ++ testList).map( "import " + _ ).mkString( "\n" )
 
     def settings = Seq(
       initialCommands := compileS,
@@ -20,7 +20,14 @@ object Console {
   }
 
   val coreImports = Imports(
-    "net.chwthewke.iptables._" :: "cats._" :: "cats.data._" :: "cats.implicits._" :: Nil,
+    "net.chwthewke.iptables._" ::
+      "cats._" ::
+      "cats.data._" ::
+      "cats.implicits._" ::
+      "com.typesafe.config.ConfigFactory.parseString" ::
+      "com.typesafe.config.ConfigFactory.parseFile" ::
+      "pureconfig.loadConfig" ::
+      Nil,
     "org.scalacheck.Gen" :: "org.scalacheck.Gen._" :: Nil
   )
 }

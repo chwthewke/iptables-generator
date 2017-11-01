@@ -18,8 +18,11 @@ val iptablesgenparentSettings =
 
 val `iptables-gen` = project
   .settings( iptablesgenparentSettings )
+  .settings( libraryDependencies ++= Dependencies.pureconfig ++ Dependencies.decline )
   .settings( SbtBuildInfo.buildSettings( "IptablesgenBuildInfo" ) )
   .settings( Console.coreImports.settings )
+  .settings( mainClass := Some( "net.chwthewke.iptables.Main" ) )
+  .enablePlugins( JavaAppPackaging )
 
 val `iptables-gen-parent` = project
   .in( file( "." ) )

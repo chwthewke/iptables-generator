@@ -33,11 +33,21 @@ object Dependencies {
   val enumeratumVersion: String = "1.5.12"
   val enumeratum: D             = group( "com.beachape" %% "enumeratum" % enumeratumVersion )()
 
+  private val pureconfigVersion = "0.8.0"
+  val pureconfig: D = group(
+    "com.github.pureconfig" %% "pureconfig"            % pureconfigVersion,
+    "com.github.pureconfig" %% "pureconfig-enumeratum" % pureconfigVersion,
+    "com.github.pureconfig" %% "pureconfig-cats"       % pureconfigVersion
+  )()
+
+  val decline: D = group( "com.monovore" %% "decline" % "0.3.0" )()
+
   val common: D = kindProjector ++ cats ++ shapeless ++ enumeratum ++ scalacheck ++ scalatest
 
   val overrides = dependencyOverrides ++= Set(
-    "org.scala-lang" % "scala-library" % scalaVersion.value,
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value
+    "org.scala-lang"         % "scala-library" % scalaVersion.value,
+    "org.scala-lang"         % "scala-reflect" % scalaVersion.value,
+    "org.scala-lang.modules" %% "scala-xml"    % "1.0.6"
   )
 
   val settings = Seq( libraryDependencies ++= common, overrides )
