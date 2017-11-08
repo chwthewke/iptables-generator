@@ -44,7 +44,7 @@ object Dependencies {
 
   val common: D = kindProjector ++ cats ++ shapeless ++ enumeratum ++ scalacheck ++ scalatest
 
-  val overrides = dependencyOverrides ++= Set(
+  val overrides = dependencyOverrides ++= Seq(
     "org.scala-lang"         % "scala-library" % scalaVersion.value,
     "org.scala-lang"         % "scala-reflect" % scalaVersion.value,
     "org.scala-lang.modules" %% "scala-xml"    % "1.0.6"

@@ -22,7 +22,16 @@ val `iptables-gen` = project
   .settings( SbtBuildInfo.buildSettings( "IptablesgenBuildInfo" ) )
   .settings( Console.coreImports.settings )
   .settings( mainClass := Some( "net.chwthewke.iptables.Main" ) )
-  .enablePlugins( JavaAppPackaging )
+  .settings( inConfig( Debian )( Seq(
+    name := "iptables-generator",
+    packageDescription := "This package provides a single executable, iptables-gen, which transforms a set of " +
+      "HOCON files into a rules file to be applied by iptables-apply or iptables-restore.",
+    packageSummary := "iptables ruleset generator",
+    maintainer := "Thomas Dufour <chwthewke@gmail.com>",
+    debianPackageDependencies := Seq( "openjdk-8-jre-headless" ),
+    debianChangelog := None
+  ) ) )
+  .enablePlugins( JavaAppPackaging, DebianPlugin, JDebPackaging )
 
 val `iptables-gen-parent` = project
   .in( file( "." ) )
